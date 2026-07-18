@@ -3,7 +3,9 @@ package com.cheemala.addmycourse.domain.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.cheemala.addmycourse.util.AppConstant.COURSE_TABLE_NAME
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Entity(tableName = COURSE_TABLE_NAME)
 data class Course(
     @PrimaryKey(autoGenerate = false)
@@ -20,6 +22,7 @@ data class Course(
     val rating: Double
 )
 
+@Serializable
 data class CourseContent(
     val lessons: List<String>,
     val module_name: String
