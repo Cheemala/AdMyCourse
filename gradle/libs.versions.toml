@@ -15,6 +15,7 @@ roomVersion = "2.8.4"
 daggerHiltPluginVersion = "2.60.1"
 coilComposeVersion = "3.5.0"
 pagingVersion = "3.4.2"
+navigationRuntimeKtxVersion = "2.9.8"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,6 +44,8 @@ coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref 
 coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coilComposeVersion" }
 paging-common = { group = "androidx.paging", name = "paging-common", version.ref = "pagingVersion" }
 paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingVersion" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtxVersion" }
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationRuntimeKtxVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
