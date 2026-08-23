@@ -1,0 +1,6 @@
+package com.cheemala.addmycourse.domain.use_cases
+
+import com.cheemala.addmycourse.domain.use_cases.read_onboarding_state.ReadOnboardingStateUsecase
+import com.cheemala.addmycourse.domain.use_cases.save_onboarding_state.SaveOnboardingStateUsecase
+
+data class DatastoreUsecases(val readOnboardingState: ReadOnboardingStateUsecase,val saveOnboardingStateUsecase: SaveOnboardingStateUsecase)

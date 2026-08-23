@@ -4,11 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.cheemala.addmycourse.screen.CourseDetailScreen
-import com.cheemala.addmycourse.screen.HomeScreen
-import com.cheemala.addmycourse.screen.SearchScreen
-import com.cheemala.addmycourse.screen.SplashScreen
-import com.cheemala.addmycourse.screen.WelcomeScreen
+import com.cheemala.addmycourse.presentation.screen.CourseDetailScreen
+import com.cheemala.addmycourse.presentation.screen.home.HomeScreen
+import com.cheemala.addmycourse.presentation.screen.SearchScreen
+import com.cheemala.addmycourse.presentation.screen.splash.SplashScreen
+import com.cheemala.addmycourse.presentation.screen.welcome.WelcomeScreen
 
 @Composable
 fun SetUpNavGraph(navController: NavHostController) {

@@ -1,4 +1,4 @@
-package com.cheemala.addmycourse.screen
+package com.cheemala.addmycourse.presentation.screen.splash
 
 import android.view.animation.OvershootInterpolator
 import androidx.compose.animation.core.Animatable
@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,20 +21,25 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.cheemala.addmycourse.R
 import com.cheemala.addmycourse.navigation.Screen
 
 @Composable
-fun SplashScreen(navController: NavController) {
+fun SplashScreen(
+    splashScreenViewModel: SplashScreenViewModel = hiltViewModel(),
+    navController: NavController
+) {
 
-    Splash(navController)
+    Splash(splashScreenViewModel, navController)
 
 }
 
 @Composable
-fun Splash(navController: NavController) {
+fun Splash(splashScreenViewModel: SplashScreenViewModel, navController: NavController) {
 
+    val isOnBoardingCompleted by splashScreenViewModel.onBoardingCompletedState.collectAsState()
     val rotateAnim = remember { Animatable(0f) }
 
     LaunchedEffect(key1 = true) {
@@ -43,14 +50,16 @@ fun Splash(navController: NavController) {
                 })
         )
 
-        navController.navigate(Screen.WelcomeScreen.route) {
-            popUpTo(Screen.SplashScreen.route) {
-                inclusive = true
-            }
+        if (!isOnBoardingCompleted) {
+            navController.popBackStack()
+            navController.navigate(Screen.WelcomeScreen.route)
+        } else {
+            navController.popBackStack()
+            navController.navigate(Screen.HomeScreen.route)
         }
     }
 
-    if(!isSystemInDarkTheme()){
+    if (!isSystemInDarkTheme()) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -71,7 +80,7 @@ fun Splash(navController: NavController) {
                     .rotate(rotateAnim.value)
             )
         }
-    }else{
+    } else {
         Box(
             modifier = Modifier
                 .fillMaxSize()
