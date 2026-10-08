@@ -9,5 +9,6 @@ data class CourseApiResponse(
     val message: String,
     val prevPage: Int? = null,
     val nextPage: Int? = null,
+    val lastUpdated: Long? = null,
     val courses: List<Course> = emptyList())
 

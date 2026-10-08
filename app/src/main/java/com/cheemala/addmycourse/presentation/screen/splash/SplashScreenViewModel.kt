@@ -2,7 +2,7 @@ package com.cheemala.addmycourse.presentation.screen.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cheemala.addmycourse.domain.use_cases.DatastoreUsecases
+import com.cheemala.addmycourse.domain.use_cases.AppUsecases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SplashScreenViewModel @Inject constructor(private val datastoreUsecases: DatastoreUsecases) :
+class SplashScreenViewModel @Inject constructor(private val appUsecases: AppUsecases) :
     ViewModel() {
 
     private val _onBoardingCompletedState = MutableStateFlow(false)
@@ -20,7 +20,7 @@ class SplashScreenViewModel @Inject constructor(private val datastoreUsecases: D
     init {
         viewModelScope.launch(Dispatchers.IO) {
             _onBoardingCompletedState.value =
-                datastoreUsecases.readOnboardingState().stateIn(viewModelScope).value
+                appUsecases.readOnboardingState().stateIn(viewModelScope).value
         }
     }
 

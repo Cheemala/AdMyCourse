@@ -2,9 +2,11 @@ package com.cheemala.addmycourse.di
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.cheemala.addmycourse.data.repositoryimpl.DatastoreRepositoryImpl
-import com.cheemala.addmycourse.domain.repository.DatastoreRepository
-import com.cheemala.addmycourse.domain.use_cases.DatastoreUsecases
+import com.cheemala.addmycourse.data.repositoryimpl.AppRepositoryImpl
+import com.cheemala.addmycourse.domain.repository.AppRepository
+import com.cheemala.addmycourse.domain.repository.RemoteDataSource
+import com.cheemala.addmycourse.domain.use_cases.AppUsecases
+import com.cheemala.addmycourse.domain.use_cases.get_all_courses.GetAllCoursesUseCase
 import com.cheemala.addmycourse.domain.use_cases.read_onboarding_state.ReadOnboardingStateUsecase
 import com.cheemala.addmycourse.domain.use_cases.save_onboarding_state.SaveOnboardingStateUsecase
 import dagger.Module
@@ -20,18 +22,22 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideDatastoreRepository(datastore: DataStore<Preferences>): DatastoreRepository {
-        return DatastoreRepositoryImpl(datastore)
+    fun provideDatastoreRepository(
+        datastore: DataStore<Preferences>,
+        remoteDataSource: RemoteDataSource
+    ): AppRepository {
+        return AppRepositoryImpl(datastore, remoteDataSource)
     }
 
     @Provides
     @Singleton
-    fun provideDatastoreUseCases(datastoreRepository: DatastoreRepository): DatastoreUsecases {
-        return DatastoreUsecases(
+    fun provideDatastoreUseCases(appRepository: AppRepository): AppUsecases {
+        return AppUsecases(
             readOnboardingState = ReadOnboardingStateUsecase(
-                datastoreRepository = datastoreRepository
+                appRepository = appRepository
             ),
-            saveOnboardingStateUsecase = SaveOnboardingStateUsecase(datastoreRepository = datastoreRepository)
+            saveOnboardingStateUsecase = SaveOnboardingStateUsecase(appRepository = appRepository),
+            getAllCoursesUseCase = GetAllCoursesUseCase(appRepository = appRepository)
         )
     }
 
