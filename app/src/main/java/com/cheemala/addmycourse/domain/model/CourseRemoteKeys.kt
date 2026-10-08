@@ -5,6 +5,6 @@ import androidx.room.PrimaryKey
 import com.cheemala.addmycourse.util.AppConstant.COURSE_REMOTE_KEY_TABLE_NAME
 
 @Entity(tableName = COURSE_REMOTE_KEY_TABLE_NAME)
-data class CourseRemoteKey(
-    @PrimaryKey(autoGenerate = false) val id: Int, val prevPage: Int?, val nextPage: Int?
+data class CourseRemoteKeys(
+    @PrimaryKey(autoGenerate = false) val id: Int, val prevPage: Int?, val nextPage: Int?, val lastUpdated: Long? = null
 )

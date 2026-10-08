@@ -7,9 +7,9 @@ import com.cheemala.addmycourse.data.DatabaseTypeConverter
 import com.cheemala.addmycourse.data.local.dao.CourseDao
 import com.cheemala.addmycourse.data.local.dao.CourseRemoteKeyDao
 import com.cheemala.addmycourse.domain.model.Course
-import com.cheemala.addmycourse.domain.model.CourseRemoteKey
+import com.cheemala.addmycourse.domain.model.CourseRemoteKeys
 
-@Database(entities = [Course::class, CourseRemoteKey::class], version = 1)
+@Database(entities = [Course::class, CourseRemoteKeys::class], version = 1)
 @TypeConverters(DatabaseTypeConverter::class)
 abstract class CourseDatabase : RoomDatabase() {
     abstract fun courseDao(): CourseDao

@@ -36,8 +36,8 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.cheemala.addmycourse.R
 import com.cheemala.addmycourse.navigation.Screen
-import com.cheemala.addmycourse.util.GlobalComposables.CommonButton
-import com.cheemala.addmycourse.util.GlobalComposables.CommonTextView
+import com.cheemala.addmycourse.util.CommonButton
+import com.cheemala.addmycourse.util.CommonTextView
 
 @Composable
 fun WelcomeScreen(welcomeScreenViewModel: WelcomeScreenViewModel = hiltViewModel(), navController: NavController) {
